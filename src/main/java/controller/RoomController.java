@@ -6,8 +6,9 @@ import model.dto.RoomInfoDTO;
 
 import java.sql.*;
 
-public class RoomController {
+public class RoomController implements RoomInfoService{
 
+    @Override
     public ObservableList<RoomInfoDTO> getAllRooms() {
 
         ObservableList<RoomInfoDTO> roomInfoDTOS = FXCollections.observableArrayList();
@@ -37,7 +38,7 @@ public class RoomController {
 
         return roomInfoDTOS;
     }
-
+@Override
     public void addRoomDetails(String roomId, String type, double pricePerNight, int maxGuests, boolean availability, String description, int floor) {
         try {
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/hotel_reservation_system", "root", "1234");
@@ -59,7 +60,7 @@ public class RoomController {
             throw new RuntimeException(e);
         }
     }
-
+@Override
     public void updateRoomDetails(String cmbType,  double txtPricePerNight, int cmbMaxGuests,boolean checkAvailability, String txtdescription, int cmbFloor, String txtRoomId) {
         try {
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/hotel_reservation_system", "root", "1234");
@@ -80,9 +81,8 @@ public class RoomController {
             throw new RuntimeException(e);
         }
     }
-
-    public void
-    deleteRoomDetails(String txtRoomId) {
+@Override
+    public void deleteRoomDetails(String txtRoomId) {
         try {
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/hotel_reservation_system","root","1234");
 

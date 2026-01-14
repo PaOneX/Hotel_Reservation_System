@@ -10,12 +10,11 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import model.dto.RoomInfoDTO;
 
 import java.net.URL;
-import java.sql.*;
 import java.util.ResourceBundle;
 
 public class RoomInfoFormController implements Initializable {
 
-    RoomController roomController = new RoomController();
+    RoomInfoService roomInfoService = new RoomController();
 
     ObservableList<RoomInfoDTO>roomInfoDTOS = FXCollections.observableArrayList();
 
@@ -118,7 +117,7 @@ public class RoomInfoFormController implements Initializable {
         String description = txtdescription.getText();
         int floor = cmbFloor.getValue();
 
-        roomController.addRoomDetails(roomId, type, pricePerNight, maxGuests, availability, description, floor);
+        roomInfoService.addRoomDetails(roomId, type, pricePerNight, maxGuests, availability, description, floor);
         loadAllRooms();
         clearFields();
 
@@ -129,7 +128,7 @@ public class RoomInfoFormController implements Initializable {
     void btnDeleteOnAction(ActionEvent event) {
 
 
-        roomController.deleteRoomDetails(txtRoomId.getText());
+        roomInfoService.deleteRoomDetails(txtRoomId.getText());
 
         loadAllRooms();
         clearFields();
@@ -153,7 +152,7 @@ public class RoomInfoFormController implements Initializable {
         String description = txtdescription.getText();
         int floor = cmbFloor.getValue();
 
-        roomController.updateRoomDetails(type, pricePerNight, maxGuests, availability, description,floor,roomId);
+        roomInfoService.updateRoomDetails(type, pricePerNight, maxGuests, availability, description,floor,roomId);
         loadAllRooms();
         clearFields();
 
@@ -162,7 +161,7 @@ public class RoomInfoFormController implements Initializable {
     //load all data to table
     private void loadAllRooms(){
         roomInfoDTOS.clear();
-        tblRoomInfo.setItems(roomController.getAllRooms());
+        tblRoomInfo.setItems(roomInfoService.getAllRooms());
 
 
 
