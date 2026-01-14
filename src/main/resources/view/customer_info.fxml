@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane prefHeight="655.0" prefWidth="694.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CustomerFormController">
+   <children>
+      <TableView fx:id="tblCustomer" layoutX="12.0" layoutY="396.0" prefHeight="186.0" prefWidth="678.0">
+        <columns>
+          <TableColumn fx:id="colCusId" prefWidth="49.60000705718994" text="Id" />
+          <TableColumn fx:id="colFname" prefWidth="111.99999618530273" text="First Name" />
+            <TableColumn fx:id="colLname" prefWidth="108.79994201660156" text="Last Name" />
+            <TableColumn fx:id="colEmail" prefWidth="104.800048828125" text="Email" />
+            <TableColumn fx:id="colCty" prefWidth="71.20001220703125" text="City" />
+            <TableColumn fx:id="colDate" prefWidth="143.99996948242188" text="registered_date" />
+            <TableColumn fx:id="colMobile" prefWidth="85.5999755859375" text="Mobile" />
+        </columns>
+      </TableView>
+      <Text layoutX="10.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Customer Managemeent" textAlignment="CENTER" wrappingWidth="687.3438720703125">
+         <font>
+            <Font name="Dubai Bold" size="48.0" />
+         </font>
+      </Text>
+      <Text layoutX="14.0" layoutY="150.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Id" />
+      <TextField fx:id="txtId" layoutX="104.0" layoutY="133.0" />
+      <Text layoutX="339.0" layoutY="150.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email" />
+      <TextField fx:id="txtEmail" layoutX="440.0" layoutY="133.0" />
+      <Text layoutX="14.0" layoutY="207.0" strokeType="OUTSIDE" strokeWidth="0.0" text="First Name" wrappingWidth="72.27615356445312" />
+      <TextField fx:id="txtFirstName" layoutX="104.0" layoutY="190.0" />
+      <Text layoutX="338.0" layoutY="207.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Last Name" />
+      <TextField fx:id="txtLastName" layoutX="440.0" layoutY="190.0" />
+      <Text layoutX="14.0" layoutY="262.0" strokeType="OUTSIDE" strokeWidth="0.0" text="City" wrappingWidth="72.27615356445312" />
+      <TextField fx:id="txtCity" layoutX="104.0" layoutY="245.0" />
+      <Text layoutX="338.0" layoutY="275.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Registered Date" />
+      <Button layoutX="14.0" layoutY="342.0" mnemonicParsing="false" onAction="#btnAdd" prefHeight="26.0" prefWidth="159.0" style="-fx-background-color: #1A98ED;" text="Add" textFill="#0cea2d">
+         <font>
+            <Font name="Segoe UI Bold" size="15.0" />
+         </font>
+      </Button>
+      <Button layoutX="187.0" layoutY="342.0" mnemonicParsing="false" onAction="#btnUpdate" prefHeight="26.0" prefWidth="159.0" style="-fx-background-color: #0DFF25;" text="Update" textFill="#44b4f4">
+         <font>
+            <Font name="Rockwell" size="15.0" />
+         </font>
+      </Button>
+      <Button layoutX="358.0" layoutY="342.0" mnemonicParsing="false" onAction="#btnDelete" prefHeight="26.0" prefWidth="159.0" style="-fx-background-color: #FB0101;" text="Delete" textFill="WHITE">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Button>
+      <Button layoutX="526.0" layoutY="342.0" mnemonicParsing="false" onAction="#btnReload" prefHeight="26.0" prefWidth="159.0" style="-fx-background-color: #FBB001;" text="Reload" textFill="RED">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Button>
+      <DatePicker fx:id="txtDate" layoutX="438.0" layoutY="258.0" />
+      <Text layoutX="10.0" layoutY="319.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mobile" wrappingWidth="72.27615356445312" />
+      <TextField fx:id="txtMobile" layoutX="98.0" layoutY="302.0" />
+   </children>
+</AnchorPane>

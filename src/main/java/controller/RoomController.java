@@ -1,5 +1,6 @@
 package controller;
 
+import db.DBConnection;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.dto.RoomInfoDTO;
@@ -14,7 +15,7 @@ public class RoomController implements RoomInfoService{
         ObservableList<RoomInfoDTO> roomInfoDTOS = FXCollections.observableArrayList();
 
         try {
-            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/hotel_reservation_system", "root", "1234");
+            Connection connection = DBConnection.getInstance().getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM rooms");
 
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -41,7 +42,7 @@ public class RoomController implements RoomInfoService{
 @Override
     public void addRoomDetails(String roomId, String type, double pricePerNight, int maxGuests, boolean availability, String description, int floor) {
         try {
-            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/hotel_reservation_system", "root", "1234");
+            Connection connection = DBConnection.getInstance().getConnection();
 
             PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO rooms VALUES (?,?,?,?,?,?,?)");
 
@@ -63,7 +64,7 @@ public class RoomController implements RoomInfoService{
 @Override
     public void updateRoomDetails(String cmbType,  double txtPricePerNight, int cmbMaxGuests,boolean checkAvailability, String txtdescription, int cmbFloor, String txtRoomId) {
         try {
-            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/hotel_reservation_system", "root", "1234");
+            Connection connection = DBConnection.getInstance().getConnection();
 
             PreparedStatement preparedStatement = connection.prepareStatement("UPDATE rooms SET type = ?, price_per_night = ?, max_guests = ?, availability = ?, description = ?, floor = ? WHERE room_id = ?");
 
@@ -84,7 +85,7 @@ public class RoomController implements RoomInfoService{
 @Override
     public void deleteRoomDetails(String txtRoomId) {
         try {
-            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/hotel_reservation_system","root","1234");
+            Connection connection = DBConnection.getInstance().getConnection();
 
             PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM rooms WHERE room_id = ? ");
 

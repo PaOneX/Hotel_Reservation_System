@@ -1,11 +1,9 @@
 package model.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
-@Data
+@Setter
+@Getter
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
@@ -24,6 +22,4 @@ public class RoomInfoDTO {
     private String description;
 
     private int floor;
-
-
 }

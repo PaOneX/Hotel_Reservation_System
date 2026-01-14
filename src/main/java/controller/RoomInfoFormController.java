@@ -139,7 +139,6 @@ public class RoomInfoFormController implements Initializable {
     void btnReloadOnAction(ActionEvent event) {
         loadAllRooms();
 
-
     }
 
     @FXML

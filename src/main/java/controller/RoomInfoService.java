@@ -12,6 +12,4 @@ public interface RoomInfoService {
     void updateRoomDetails(String cmbType, double txtPricePerNight, int cmbMaxGuests, boolean checkAvailability, String txtdescription, int cmbFloor, String txtRoomId);
 
     void deleteRoomDetails(String txtRoomId);
-
-
 }
