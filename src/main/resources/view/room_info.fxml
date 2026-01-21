@@ -10,7 +10,6 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
 <AnchorPane prefHeight="705.0" prefWidth="976.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.RoomInfoFormController">
    <children>
       <Text layoutX="345.0" layoutY="71.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Room Information">
@@ -46,5 +45,6 @@
       <Button layoutX="791.0" layoutY="560.0" mnemonicParsing="false" onAction="#btnAddOnAction" prefHeight="26.0" prefWidth="132.0" text="ADD" />
       <Button layoutX="791.0" layoutY="597.0" mnemonicParsing="false" onAction="#btnUpdateOnAction" prefHeight="26.0" prefWidth="132.0" text="UPDATE" />
       <Button layoutX="791.0" layoutY="630.0" mnemonicParsing="false" onAction="#btnDeleteOnAction" prefHeight="26.0" prefWidth="132.0" text="DELETE" />
+      <Button layoutX="53.0" layoutY="35.0" mnemonicParsing="false" onAction="#btnBack" text="Back" />
    </children>
 </AnchorPane>

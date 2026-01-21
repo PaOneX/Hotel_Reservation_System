@@ -10,7 +10,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class DashboardFormController {
-Stage stage = new Stage();
+    Stage stage = new Stage();
 
     @FXML
     void btnCustomerInfo(ActionEvent event) {
@@ -27,7 +27,14 @@ Stage stage = new Stage();
 
     @FXML
     void btnRoomInfo(ActionEvent event) {
-
+        Stage oldStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        try {
+            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/room_info.fxml"))));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        oldStage.close();
+        stage.show();
     }
 
 }

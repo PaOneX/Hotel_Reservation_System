@@ -4,11 +4,16 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 import model.dto.RoomInfoDTO;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -17,6 +22,9 @@ public class RoomInfoFormController implements Initializable {
     RoomInfoService roomInfoService = new RoomController();
 
     ObservableList<RoomInfoDTO>roomInfoDTOS = FXCollections.observableArrayList();
+
+    Stage stage = new Stage();
+
 
     @FXML
     private ComboBox<Integer> cmbFloor;
@@ -155,6 +163,18 @@ public class RoomInfoFormController implements Initializable {
         loadAllRooms();
         clearFields();
 
+    }
+
+    @FXML
+    void btnBack(ActionEvent event) {
+        Stage oldStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        try {
+            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/dashboard.fxml.fxml"))));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        oldStage.close();
+        stage.show();
     }
 
     //load all data to table

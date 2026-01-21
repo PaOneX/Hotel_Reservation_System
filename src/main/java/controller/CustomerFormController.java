@@ -4,14 +4,19 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 import model.dto.CustomerInfoDTO;
 
+import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.Date;
@@ -21,6 +26,8 @@ public class CustomerFormController implements Initializable {
 
     CustomerService customerService = new CustomerController();
     ObservableList<CustomerInfoDTO> customerInfoDTOS = FXCollections.observableArrayList();
+    Stage stage = new Stage();
+
 
     @FXML
     private TableColumn<?, ?> colCty;
@@ -74,11 +81,10 @@ public class CustomerFormController implements Initializable {
         String lname = txtLastName.getText();
         String email = txtEmail.getText();
         String mobile = txtMobile.getText();
-        String address = txtMobile.getText();
         String city = txtCity.getText();
         String date = String.valueOf(txtDate.getValue());
 
-        customerService.addCustomer(cus_id, fname, lname, email, mobile, address, city, date);
+        customerService.addCustomer(cus_id, fname, lname, email, mobile, city, date);
         loadAllCustomers();
         clearFields();
     }
@@ -95,7 +101,29 @@ public class CustomerFormController implements Initializable {
 
     @FXML
     void btnUpdate(ActionEvent event) {
+        String cus_id = txtId.getText();
+        String fname = txtFirstName.getText();
+        String lname = txtLastName.getText();
+        String email = txtEmail.getText();
+        String mobile = txtMobile.getText();
+        String city = txtCity.getText();
+        String date = String.valueOf(txtDate.getValue());
 
+        customerService.updateCustomer(fname,lname,email,mobile,city,date,cus_id);
+        loadAllCustomers();
+        clearFields();
+    }
+
+    @FXML
+    void btnBack(ActionEvent event) {
+        Stage oldStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        try {
+            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/dashboard.fxml.fxml"))));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        oldStage.close();
+        stage.show();
     }
 
     @Override
@@ -119,13 +147,13 @@ public class CustomerFormController implements Initializable {
         });
     }
 
-    private void loadAllCustomers(){
+    private void loadAllCustomers() {
         customerInfoDTOS.clear();
         tblCustomer.setItems(customerService.getAllCustomers());
     }
 
     private void setSelectedValue(CustomerInfoDTO selectedValue) {
-        if(selectedValue == null){
+        if (selectedValue == null) {
             clearFields();
             return;
         }
