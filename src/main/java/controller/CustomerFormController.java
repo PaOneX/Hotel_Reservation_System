@@ -13,6 +13,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import model.dto.CustomerInfoDTO;
 
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.ResourceBundle;
 
@@ -68,7 +69,18 @@ public class CustomerFormController implements Initializable {
 
     @FXML
     void btnAdd(ActionEvent event) {
+        String cus_id = txtId.getText();
+        String fname = txtFirstName.getText();
+        String lname = txtLastName.getText();
+        String email = txtEmail.getText();
+        String mobile = txtMobile.getText();
+        String address = txtMobile.getText();
+        String city = txtCity.getText();
+        String date = String.valueOf(txtDate.getValue());
 
+        customerService.addCustomer(cus_id, fname, lname, email, mobile, address, city, date);
+        loadAllCustomers();
+        clearFields();
     }
 
     @FXML
@@ -88,7 +100,7 @@ public class CustomerFormController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        colCusId.setCellValueFactory(new PropertyValueFactory<>("cusId"));
+        colCusId.setCellValueFactory(new PropertyValueFactory<>("id"));
         colFname.setCellValueFactory(new PropertyValueFactory<>("FName"));
         colLname.setCellValueFactory(new PropertyValueFactory<>("LName"));
         colEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
@@ -98,16 +110,16 @@ public class CustomerFormController implements Initializable {
 
         tblCustomer.setItems(customerInfoDTOS);
 
-        loadAllRooms();
+        loadAllCustomers();
 
-        tblCustomer.getSelectionModel().selectedItemProperty().addListener((observableValue, oldValue, newValue) -> {;
+        tblCustomer.getSelectionModel().selectedItemProperty().addListener((observableValue, oldValue, newValue) -> {
             if (newValue != null) {
                 setSelectedValue(newValue);
             }
         });
     }
 
-    private void loadAllRooms(){
+    private void loadAllCustomers(){
         customerInfoDTOS.clear();
         tblCustomer.setItems(customerService.getAllCustomers());
     }
@@ -117,13 +129,13 @@ public class CustomerFormController implements Initializable {
             clearFields();
             return;
         }
-        colCusId.setText(selectedValue.getId());
-        colFname.setText(selectedValue.getFName());
-        colLname.setText(selectedValue.getLName());
-        colEmail.setText(selectedValue.getEmail());
-        colCty.setText(selectedValue.getCity());
-        colDate.setText(String.valueOf(selectedValue.getDate()));
-        colMobile.setText(selectedValue.getMobile());
+        txtId.setText(selectedValue.getId());
+        txtFirstName.setText(selectedValue.getFName());
+        txtLastName.setText(selectedValue.getLName());
+        txtEmail.setText(selectedValue.getEmail());
+        txtCity.setText(selectedValue.getCity());
+        txtDate.setValue(LocalDate.parse(selectedValue.getDate()));
+        txtMobile.setText(selectedValue.getMobile());
 
     }
 

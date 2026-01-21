@@ -7,6 +7,7 @@ import lombok.ToString;
 
 import java.util.Date;
 
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -16,11 +17,13 @@ public class CustomerInfoDTO {
     private String FName;
     private String LName;
     private String email;
-    private String city;
-    private Date date;
     private String mobile;
+    private String address;
+    private String city;
+    private String date;
 
-    public CustomerInfoDTO(String customerId, String firstName, String lastName, String email, String phone, String address, String city, String registeredDate) {
-    }
+
+
+
 }
 

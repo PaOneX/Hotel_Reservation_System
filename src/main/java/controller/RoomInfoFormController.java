@@ -98,7 +98,7 @@ public class RoomInfoFormController implements Initializable {
         radioUnavailabile.setToggleGroup(toggleGroup);
 
         //set selected row data to the fields
-        tblRoomInfo.getSelectionModel().selectedItemProperty().addListener((observableValue, oldValue, newValue) -> {;
+        tblRoomInfo.getSelectionModel().selectedItemProperty().addListener((observableValue, oldValue, newValue) -> {
             if (newValue != null) {
                 setSelectedValue(newValue);
             }
